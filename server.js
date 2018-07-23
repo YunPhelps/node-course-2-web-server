@@ -27,27 +27,36 @@ app.use((req,res,next)=>{
 
 app.use(express.static(__dirname + '/public')); 
 
+//gets year for copyright date
 hbs.registerHelper('getCurrentYear', ()=>{
     return new Date().getFullYear()
 });
 
+//makes things all caps
 hbs.registerHelper('screamIt', (text)=>{
     return text.toUpperCase()
 });
 
+//home page 
 app.get('/',(req, res)=>{
     //res.send('<h1>Hello Express!</h1>'); 
     res.render('home.hbs', {
         pageTitle: 'Home Page',
         welcomeMessage: 'Welcome to the home page'
-    })
+    });
 });
 
 //about page
 app.get('/about', (req,res) =>{
     res.render('about.hbs', {
-        pageTitle: 'About Page', 
+        pageTitle: 'About Page'
     }); 
+});
+
+app.get('/projects', (req,res) => {
+    res.render('projects.hbs',{
+        pageTitle: 'Projects Page'
+    });
 });
 
 // /bad - send back json with errorMessage 
@@ -62,3 +71,10 @@ app.get('/bad', (req,res) =>{
 app.listen(port, ()=>{
     console.log(`Server is up on port ${port}`)
 }); 
+
+//create a url /projects
+//handlebars templete view file (like home and about)
+//render header footer and portfoliio page here
+//add a link for the projecgs page in header 
+//first open on 3000
+//make a commit and push up to git hub and up to heroku
